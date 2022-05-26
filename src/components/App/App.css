@@ -2,3 +2,7 @@ main {
   width: 90%;
   margin: auto;
 }
+
+body {
+  margin-left: 50px;
+}
