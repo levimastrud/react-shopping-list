@@ -47,11 +47,19 @@ function App() {
         .then(response => {
             console.log('sent', response)
 
+            // Checking for less than 0
+
+            if (newPackage.quantity < 0) {
+                alert('Please enter a positive value for quantity')
+                return;
+            }
+
             // Checking for blank values
 
             if(!newPackage) {
-                return
+                return;
             }
+
             FetchItems();
             setNewItem('');
             setNewQuantity('');
@@ -77,8 +85,6 @@ function App() {
             <h3>Unit:</h3><input value = {newUnit} placeholder = 'unit' onChange={(event) => setNewUnit(event.target.value)}></input>
             <button onClick={addItem}>Save</button>
             </div>
-            {/* <div className="App">
-            </div> */}
             <h1>Shopping List</h1>
             <hr></hr>
             <button onClick={ClearTable}>Clear</button>
