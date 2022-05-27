@@ -12,9 +12,6 @@ function App() {
     const [newQuantity, setNewQuantity] = useState([]);
     const [newUnit, setNewUnit] = useState([]);
     
-    // RESET
-
-
     // CLEAR
 
     const ClearTable = () => {
@@ -56,18 +53,6 @@ function App() {
         }).catch(error => console.log("the was a client side post error",error))
     }
 
-    const deleteItem = () => {
-        axios.delete(`/list/${15}`)
-        .then(() => {
-            FetchItems()
-        })
-        .catch((error) => {
-
-            
-            console.log('client side error with DELETE', error)
-        })
-    }
-
     useEffect(() => {
         FetchItems();
     }, [])
@@ -90,10 +75,9 @@ function App() {
             </div> */}
             <h1>Shopping List</h1>
             <hr></hr>
-            <button>Reset</button>
             <button onClick={ClearTable}>Clear</button>
             <br></br>
-            <ListItems FetchItems = {FetchItems} deleteItem = {deleteItem} shoppingList = {shoppingList}/>
+            <ListItems FetchItems = {FetchItems} shoppingList = {shoppingList}/>
             </section>
         </>
     );

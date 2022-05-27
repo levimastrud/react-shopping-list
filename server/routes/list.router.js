@@ -72,7 +72,7 @@ router.put('/:id', (req, res) => {
 
 // RESET BUTTON
 
-router.put('/:id', (req, res) => {
+router.put('/', (req, res) => {
     const queryText ='UPDATE list SET "ispurchased" = false;';
     pool.query(queryText)
     .then(result => {
