@@ -1,6 +1,5 @@
 import Header from '../Header/Header.jsx'
 import './App.css';
-// import Form from '../Form/Form.jsx';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import axios from 'axios';
@@ -12,6 +11,23 @@ function App() {
     const [newItem, setNewItem] = useState([]);
     const [newQuantity, setNewQuantity] = useState([]);
     const [newUnit, setNewUnit] = useState([]);
+    
+    // RESET
+
+
+    // CLEAR
+
+    const ClearTable = () => {
+        axios.delete('/list')
+            .then(response => {
+                FetchItems();
+            }).catch(error => {
+                console.log('error CLIENT side in Clear Table', error);
+            })
+    }
+
+    // Buy an item 
+
 
     const FetchItems = () => {
         axios.get('/list')
@@ -33,18 +49,21 @@ function App() {
         axios.post('/list', newPackage)
         .then(response => {
             console.log('sent', response)
-            FetchItems()
+            FetchItems();
+            setNewItem('');
+            setNewQuantity('');
+            setNewUnit('');
         }).catch(error => console.log("the was a client side post error",error))
     }
 
-    const deleteItem = (id) => {
-        axios.delete(`/list/${id}`)
+    const deleteItem = () => {
+        axios.delete(`/list/${15}`)
         .then(() => {
             FetchItems()
         })
         .catch((error) => {
 
-            console.log('ITEM ID', itemid)
+            
             console.log('client side error with DELETE', error)
         })
     }
@@ -53,21 +72,29 @@ function App() {
         FetchItems();
     }, [])
 
+
+
+
     return (
         <>
             <Header />
+            <section>
+            <div className='addItem'>
             <h1>Add an item</h1>
-            <h3>Item:</h3><input placeholder = 'item' onChange={(event) => setNewItem(event.target.value)}></input>
-            <h3>Quantity:</h3><input placeholder = 'quantity' onChange={(event) => setNewQuantity(event.target.value)}></input>
-            <h3>Unit:</h3><input placeholder = 'unit' onChange={(event) => setNewUnit(event.target.value)}></input>
+            <h3>Item:</h3><input value = {newItem} placeholder = 'item' onChange={(event) => setNewItem(event.target.value)}></input>
+            <h3>Quantity:</h3><input value = {newQuantity} placeholder = 'quantity' onChange={(event) => setNewQuantity(event.target.value)}></input>
+            <h3>Unit:</h3><input value = {newUnit} placeholder = 'unit' onChange={(event) => setNewUnit(event.target.value)}></input>
             <button onClick={addItem}>Save</button>
+            </div>
             {/* <div className="App">
             </div> */}
             <h1>Shopping List</h1>
             <hr></hr>
             <button>Reset</button>
-            <button>Clear</button>
-            <ListItems deleteItem = {deleteItem} shoppingList = {shoppingList}/>
+            <button onClick={ClearTable}>Clear</button>
+            <br></br>
+            <ListItems FetchItems = {FetchItems} deleteItem = {deleteItem} shoppingList = {shoppingList}/>
+            </section>
         </>
     );
 }
