@@ -1,13 +1,10 @@
 import axios from "axios";
 import { useState } from 'react';
 
-function sayHello(name) {
-    console.log('hello ', name)
-}
-
 function ListItems(props) {
 
     const [buyItem, setBuyItem] = useState(false);
+    let purchasedClass = 'box';
 
     let items = props.shoppingList;
     console.log(items)
@@ -54,17 +51,17 @@ function ListItems(props) {
             <br></br>
             {items.map((item) => (
                 <div key={item.id} className="wrapper">
-                    <div className="box">
+                    <div className={item.ispurchased ? 'purchased' : 'box'}>
                         <h3>{item.item}</h3>
                         <h3>{item.quantity}</h3>
                         <h3>{item.unit}</h3>
                         {
                             item.ispurchased ?
-                                <p>Purchased</p>
+                                <span id = 'purchasedText'><h2>Purchased</h2></span>
                                 :
                                 <>
-                                    <button onClick={() => ToggleBuy(item.id)}> Buy</button>
-                                    <button onClick={() => DeleteItem(item.id)}> Remove</button>
+                                    <button id = "buyButton" onClick={() => ToggleBuy(item.id)}> Buy</button>
+                                    <button id = 'removeButton' onClick={() => DeleteItem(item.id)}> Remove</button>
                                     <br></br>
                                 </>
                         }

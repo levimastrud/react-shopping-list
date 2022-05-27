@@ -4,7 +4,7 @@ main {
 }
 
 body{
-  background-color: rgb(241, 241, 241);
+  background: rgb(225, 233, 236);
   color: rgb(92, 92, 92);
 }
 
@@ -22,10 +22,12 @@ section {
   padding: 40px;
   border: 3px solid rgb(92, 92, 92);
   color: rgb(92, 92, 92);
-  margin: 10px;
+  margin: 30px;
   border-radius: 25px;
   display: block;
   background-color: white;
+  width: 120px;
+  height: 180px;
 }
 .wrapper {
   margin-top: 20px;
@@ -46,16 +48,45 @@ button{
 
 button:hover{
   background-color: white;
-  color: rgb(110, 205, 236);
+  color: rgb(79, 158, 184);
+}
+
+#removeButton:hover {
+  color: white;
+  background-color: rgb(184, 79, 79);
+}
+
+#buyButton:hover {
+  color: white;
+  background-color: rgb(79, 184, 116);
 }
 
 hr {
   border: 1px solid rgb(92, 92, 92);
   margin-left: -100px;
-  width: 5000px
+  width: 5000px;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 
 .addItem {
   margin-top: 100px;
   margin-bottom: 100px;
+}
+
+#purchasedText {
+  color: rgb(255, 255, 255);
+}
+
+.purchased {
+  text-align: center;
+  padding: 40px;
+  border: 3px solid rgb(92, 92, 92);
+  color: rgb(155, 215, 236);
+  border-radius: 25px;
+  display: block;
+  height: 180px;
+  width: 120px;
+  margin: 30px;
+  background-color: rgb(79, 158, 184);
 }

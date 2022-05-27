@@ -46,6 +46,12 @@ function App() {
         axios.post('/list', newPackage)
         .then(response => {
             console.log('sent', response)
+
+            // Checking for blank values
+
+            if(!newPackage) {
+                return
+            }
             FetchItems();
             setNewItem('');
             setNewQuantity('');
